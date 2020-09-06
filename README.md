@@ -1,6 +1,9 @@
 # Packgen
 Package.json generator for Github &amp; NPM
 
+### Generate Package.json Online
+Click Here: [https://rohit-chouhan.github.com/packgen](https://rohit-chouhan.github.com/packgen)
+
 ### Installation
 ```sh
 $ npm install @rohit-chouhan/packgen
