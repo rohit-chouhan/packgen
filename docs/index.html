@@ -1,8 +1,222 @@
-<html>
-  <head>
-    <title>Hello</title>
-  </head>
-  <body>
-    <h1>Hello</h1>
-  </body>
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Packgen - Generate package.json for Github & NPM</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
+  <!-- Favicon and touch icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css" rel="stylesheet">
+  <link
+    href="https://www.jqueryscript.net/demo/Copy-To-Clipboard-For-Syntax-Highlighter/code-box-copy/css/code-box-copy.css"
+    rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+  <link rel="shortcut icon" href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/ico/favicon.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+    href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114"
+    href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"
+    href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed"
+    href="https://azmind.com/demo/bootstrap-4-align-center/example-1/assets/ico/apple-touch-icon-57-precomposed.png">
+
+</head>
+
+<body>
+
+  <div class="section-1-container section-container">
+    <div class="container">
+      <div class="row">
+        <div class="col section-1 section-description">
+          <h1><a href="https://github.com/rohit-chouhan/packgen">@rohit-chouhan/packgen</a></h1>
+          <div class="divider-1"><span></span></div>
+          <p>Package.json generator for Github & NPM</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-10 offset-1 col-lg-8 offset-lg-2 justify-content-center align-items-center text-left">
+
+
+          <label>Package Name</label>
+          <input id="name" class="form-control" placeholder="@rohit-chouhan/packgen" required />
+          <br>
+          <label>Package Verion</label>
+          <input id="version" class="form-control" placeholder="1.0.0" required />
+          <br>
+          <label>Desciption</label>
+          <input id="description" class="form-control" placeholder="Package description here" required />
+          <br>
+          <label>Main</label>
+          <input id="main" class="form-control" placeholder="test.js" required />
+          <br>
+          <label>Keywords</label>
+          <input id="keywords" class="form-control" placeholder="package, java, framework, github" required />
+          <br>
+          <label>Author</label>
+          <input id="author" class="form-control" placeholder="Author" required />
+          <br>
+          <label>License</label>
+          <input id="license" class="form-control" placeholder="MIT" required />
+          <br>
+          <label>Github Repository</label>
+          <input id="repository" class="form-control" placeholder="rohit-chouhan/packgen" required />
+          <br>
+          <label>Generating For?</label>
+         <select id="package" class="form-control">
+            <option value="1">Github Package.json</option>
+            <option value="0">NPM Package.json</option>
+         </select>
+          <br>
+          <button id="gen" class="btn btn-success">Generate</button>
+        </div>
+        <br>
+      </div>
+
+    </div>
+  </div>
+  <div class="container">
+  <div class="text-left" id="readme"></div></div>
+  </div>
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Your Package.json is ready</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <center>
+            <div class="code-box-copy">
+              <button class="code-box-copy__btn" data-clipboard-target="#example-head" title="Copy"></button>
+              <pre><code class="language-json" id="example-head"></code></pre>
+            </div>
+            <br>
+            <label>Use this command to Publish your Package to Github/NPM</label>
+            <div class="code-box-copy">
+              <button class="code-box-copy__btn" data-clipboard-target="#example-head" title="Copy"></button>
+              <pre><code class="language-sh" id="example-head">$ npm publish</code></pre>
+            </div>
+          </center>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" id="down" class="btn btn-danger">Download package.json</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer-container">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col">
+          &copy; Designed by <a href="https://github.com/rohit-chouhan">Rohit Chouhan</a>.
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+
+<script>
+  $("#gen").click(function () {
+    $('#myModal').modal('show');
+    var name = $("#name").val();
+    var v = $("#version").val();
+    var d = $("#description").val();
+    var main = $("#main").val();
+    var sb = $("#keywords").val();
+    var res = sb.split(",");
+    var keywords="";
+    for(var i=0;i<res.length;i++){
+             keywords+= "\""+res[i]+"\",";
+    }
+    keywords = keywords.substring(0, keywords.length - 1);
+    var author = $("#author").val();
+    var l = $("#license").val();
+    var g = $("#repository").val(); 
+    var p="";
+    if($("#package option:selected").val()=='1'){
+      p="";
+    } else {
+      p="_";
+    }
+    var data = "{      \n" +
+      " \"name\": \"" + name + "\",                                    \n" +
+      " \"version\": \"" + v + "\",                                                    \n" +
+      " \"description\": \"" + d + "\",                             \n" +
+      " \"main\": \"" + main + "\",                                                \n" +
+      " \"scripts\": {                                                             \n" +
+      "   \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"              \n" +
+      " },                                                                         \n" +
+      " \"keywords\": [                                                            \n" +
+      "  " + keywords + "                                                                 \n" +
+      " ],                                                                         \n" +
+      " \"author\": \"" + author + "\",                                             \n" +
+      " \"license\": \"" + l + "\",                                                      \n" +
+      " \"repository\": {                                                         \n " +
+      "   \"type\": \"git\",                                                     \n  " +
+      "   \"url\": \"git+https://github.com/" + g + ".git\"          \n" +
+      " },                                                                         \n" +
+      " \"bugs\": {                                                               \n " +
+      "   \"url\": \"https://github.com/" + g + "/issues\"           \n" +
+      " },                                                                        \n " +
+      " \"homepage\": \"https://github.com/" + g + "#readme\",      \n " +
+      " \""+p+"publishConfig\": { \"registry\": \"https://npm.pkg.github.com/\" }    \n  " +
+      "}";
+    $("#example-head").html(data);
+  });
+
+  $("#down").click(function () {
+    download('package.json', $("#example-head").text());
+  });
+  function download(filename, text) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+  $.get('https://raw.githubusercontent.com/rohit-chouhan/packgen/master/README.md', function(data) {
+    var converter = new showdown.Converter(),
+    text      = data,
+    html      = converter.makeHtml(text);
+    $("#readme").html(html);
+
+});
+  
+</script>
+
 </html>
