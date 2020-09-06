@@ -1,23 +1,25 @@
-{      
- "name": "@rohit-chouhan/java",                                    
- "version": "1.0.0",                                                    
- "description": "java to package",                             
- "main": "test.js",                                                
- "scripts": {                                                             
-   "test": "echo \"Error: no test specified\" && exit 1"              
- },                                                                         
- "keywords": [                                                            
-  "java","pakcage","json"," framework"                                                                 
- ],                                                                         
- "author": "Rohit Chouhan",                                             
- "license": "MIT",                                                      
- "repository": {                                                         
-    "type": "git",                                                     
-     "url": "git+https://github.com/rohit-chouhan/javapackage.git"          
- },                                                                         
- "bugs": {                                                               
-    "url": "https://github.com/rohit-chouhan/javapackage/issues"           
- },                                                                        
-  "homepage": "https://github.com/rohit-chouhan/javapackage#readme",      
-  "_publishConfig": { "registry": "https://npm.pkg.github.com/" }    
-   }
+{
+	"name": "@rohit-chouhan/packgen",
+	"version": "1.0.0",
+	"description": "Package.json generator for Github & NPM",
+	"main": "Packgen.class",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"java", "package", "json", " framework", "Github", "NPM"
+	],
+	"author": "Rohit Chouhan",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/rohit-chouhan/packgen.git"
+	},
+	"bugs": {
+		"url": "https://github.com/rohit-chouhan/packgen/issues"
+	},
+	"homepage": "https://github.com/rohit-chouhan/packgen#readme",
+	"_publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	}
+}
